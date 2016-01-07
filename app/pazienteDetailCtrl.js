@@ -1,4 +1,4 @@
-app.controller('pazientiCtrl', function ($scope, $modal, $filter, Data) {
+app.controller('pazienteDetailCtrl', function ($scope, $modal, $filter, Data) {
     $scope.paziente = {};
 
     Data.get('pazienti').then(function(data){
@@ -14,7 +14,27 @@ app.controller('pazientiCtrl', function ($scope, $modal, $filter, Data) {
         }
     };
 
+    $scope.search = function (p,size) {
+        console.log(p);
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/pazienteSearch.html',
+          controller: 'pazienteSearchCtrl',
+          size: size,
+          resolve: {
+            item: function () {
+              return p;
+            }
+          }
+        });
+        modalInstance.result.then(function(result_pazienti) {
+            $scope.pazienti = result_pazienti;
+            $scope.pazienti = $filter('orderBy')($scope.pazienti, 'id', 'reverse');
+        });
+
+    };
+
     $scope.open = function (p,size) {
+        console.log(p);
         var modalInstance = $modal.open({
           templateUrl: 'partials/productEdit.html',
           controller: 'pazienteEditCtrl',
@@ -49,47 +69,4 @@ app.controller('pazientiCtrl', function ($scope, $modal, $filter, Data) {
 //                    {text:"Action",predicate:"",sortable:false}
                 ];
 
-});
-
-
-app.controller('pazienteEditCtrl', function ($scope, $modalInstance, item, Data) {
-
-  $scope.paziente = angular.copy(item);
-        
-        $scope.cancel = function () {
-            $modalInstance.dismiss('Close');
-        };
-        $scope.title = (item.id > 0) ? 'Modifica Paziente' : 'Aggiungi Paziente';
-        $scope.buttonText = (item.id > 0) ? 'Aggiorna Paziente' : 'Aggiungi nuovo Paziente';
-
-        var original = item;
-        $scope.isClean = function() {
-            return angular.equals(original, $scope.paziente);
-        }
-        $scope.savePaziente = function (paziente) {
-            paziente.uid = $scope.uid;
-            if(paziente.id > 0){
-                Data.put('pazienti/'+paziente.id, paziente).then(function (result) {
-                    if(result.status != 'error'){
-                        var x = angular.copy(paziente);
-                        x.save = 'update';
-                        $modalInstance.close(x);
-                    }else{
-                        console.log(result);
-                    }
-                });
-            }else{
-                //paziente.status = 'Active';
-                Data.post('pazienti', paziente).then(function (result) {
-                    if(result.status != 'error'){
-                        var x = angular.copy(paziente);
-                        x.save = 'insert';
-                        x.id = result.data;
-                        $modalInstance.close(x);
-                    }else{
-                        console.log(result);
-                    }
-                });
-            }
-        };
 });

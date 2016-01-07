@@ -5,8 +5,15 @@ app.factory("Data", ['$http', '$location',
 
         var obj = {};
 
-        obj.get = function (q) {
-            return $http.get(serviceBase + q + '/').then(function (results) {
+        obj.get = function (q, object) {
+            var config = {}
+            console.log(object);
+            if (object!=null){
+                config = { params: object };
+                console.log(config);
+            }
+
+            return $http.get(serviceBase + q + '/', config).then(function (results) {
                 return results.data;
             });
         };

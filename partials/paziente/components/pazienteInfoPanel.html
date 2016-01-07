@@ -1,0 +1,15 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Dati anagrafici
+        <a ng-href="{{'#/paziente/'+paziente.id+'/edit'}}" class="btn btn-default fa fa-edit" title="Apri scheda paziente"></a>
+    </div>
+    <div class="panel-body">
+        <p><b>{{paziente.nome}} {{paziente.cognome}}</b><br/>
+            Età: XXX <b>{{paziente.telefono ? ", C.F. " + paziente.codice_fiscale : ""}}</b><br/>
+            {{paziente.sesso === "M" ? "Nato" : "Nata"}} a XXX il {{paziente.data_nascita}}<br/>
+            Residente in {{paziente.indirizzo_residenza}}, {{paziente.comune_residenza}}<br/>
+            {{paziente.telefono ? "Tel. " + paziente.telefono + ', ' : ""}}
+            {{paziente.cellulare ? "Cell. " + paziente.cellulare + '' : ""}}<br/>
+            {{paziente.email ? "E-mail " + paziente.email : ""}}
+        </p>
+    </div>
+</div>

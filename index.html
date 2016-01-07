@@ -1,48 +1,72 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html lang="it" ng-app="ambulatorioApp">
 <body ng-cloak="">
-  <title>Pazienti Manager Web Application</title>
-  <meta name="Description" content="Pazienti Manager Web Application created with AngularJS and PHP">
-  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-  <link rel="stylesheet" href="css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <div class="blog-masthead">
-      <div class="container">
+<title>Pazienti Manager Web Application</title>
+<meta name="Description" content="Pazienti Manager Web Application created with AngularJS and PHP">
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<div class="blog-masthead">
+    <div class="container" ng-controller="panelCtrl as panel">
+
+
+
         <nav class="blog-nav">
-            <a class="blog-nav-item active" href="#">Anagrafica</a>
-            <a class="blog-nav-item" href="#">Calendario</a>
-            <a class="blog-nav-item" href="#">Statistiche</a>
+            <a class="blog-nav-item" ng-click="panel.selectTab(1)" ng-class="{ active:panel.isSelected(1) }" href="#/anagrafica">Anagrafica</a>
+            <a class="blog-nav-item" ng-click="panel.selectTab(2)" ng-class="{ active:panel.isSelected(2) }" href="#/calendario">Calendario</a>
+            <a class="blog-nav-item" ng-click="panel.selectTab(3)" ng-class="{ active:panel.isSelected(3) }" href="#">Statistiche</a>
             <a class="blog-nav-item pull-right" href="#">Login</a>
             <!--<a class="blog-nav-item pull-right" href="http://www.angularcode.com/product-inventory-management-using-angularjs-mysql-and-php-restful-api">Tutorial</a>-->
             <!--<a class="blog-nav-item pull-right" href="http://www.angularcode.com/download-link/?url=https://app.box.com/s/pqr0wo3osvoahyh7qtsa">Download</a>-->
         </nav>
-      </div>
-    </div>
-
-<div class="container">
-    <div class="page-content">
-      <div ng-view="" id="ng-view"></div>
     </div>
 </div>
 
+<div class="container">
+    <div class="page-content">
+        <div ng-view="" id="ng-view"></div>
+    </div>
+</div>
+
+
 <!-- Libraries -->
-<script src="js/angular.min.js"></script>
-<script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>
-<script src="js/angular-route.min.js"></script>
-<script src="js/angular-animate.min.js"></script>
+<!--<script src="js/angular.min.js"></script>-->
+<!--<script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>-->
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!--<script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+
+<!--<script src="js/angular-route.min.js"></script>-->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+<!--<script src="js/angular-animate.min.js"></script>-->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+
 
 <!-- AngularJS custom codes -->
 <script src="app/app.js"></script>
 <script src="app/data.js"></script>
 <script src="app/directives.js"></script>
-<script src="app/pazientiCtrl.js"></script>
+<script src="app/anagraficaCtrl.js"></script>
+<script src="app/pazienteCtrl.js"></script>
+
 
 <!-- Some Bootstrap Helper Libraries -->
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<!--<script src="js/jquery.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+
+<!--<script src="js/bootstrap.min.js"></script>-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
 <script src="js/underscore.min.js"></script>
+<script src="http://underscorejs.org/underscore-min.js"></script>
+
+
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="js/ie10-viewport-bug-workaround.js"></script>
 </body>

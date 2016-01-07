@@ -1,0 +1,130 @@
+<ol class="breadcrumb">
+  <li><a href="#">Ricerca</a></li>
+  <li><a href="#">Library</a></li>
+  <li class="active">Data</li>
+</ol>
+
+
+<h4 class="blog-post-title">Anagrafica</h4>
+<hr/>
+
+<div class="table-responsive">
+    <div class="panel panel-primary">
+        <div class="panel-heading">{{panelHeadingText}}
+            <!--<div class="sw-search" >
+                <div class="nav-search" id="nav-search">
+                    Filter: <span class="input-icon">
+                        <input placeholder="Filter pazienti list ..." class="nav-search-input" ng-model="filterPaziente" ng-change="resetLimit();"  autocomplete="on" type="text" style="width:300px;" >
+                        <i class="search-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </div>
+            </div>-->
+        </div>
+        <div class="panel-body">
+
+            <div ng-show="isNoDataFound()" style="vertical-align:middle;">
+                Non è stato trovato alcun paziente con i criteri specificati. Riprova o inserisci un nuovo paziente:
+            </div>
+
+            <div ng-hide="isSearchable() || isNoDataFound()" style="vertical-align:middle;">
+                Sono stati trovati i seguenti pazienti:
+            </div>
+
+            <form ng-show="isSearchable() || isNoDataFound()" name="product_form" class="form-horizontal" role="form" ng-submit>
+                <form-element label="NOME" mod="paziente">
+                    <input type="text" class="form-control" name="nome" placeholder="NOME" ng-model="paziente.nome" ng-disabled="paziente.id" focus/>
+                </form-element>
+
+                <form-element label="COGNOME" mod="paziente">
+                    <input type="text" class="form-control" name="cognome" placeholder="COGNOME" ng-model="paziente.cognome" ng-disabled="paziente.id" />
+                </form-element>
+
+                <form-element label="SESSO" mod="paziente">
+                    <input type="text" class="form-control" name="sesso" placeholder="SESSO" ng-model="paziente.sesso" ng-disabled="paziente.id" />
+                </form-element>
+
+                <form-element label="DATA_NASCITA" mod="paziente">
+                    <input type="date" class="form-control" name="data_nascita" placeholder="DATA_NASCITA" ng-model="paziente.data_nascita" ng-disabled="paziente.id" />
+                </form-element>
+
+
+                <div class="space"></div>
+                <div class="space-4"></div>
+                <div class="modal-footer">
+                    <form-element label="">
+                        <div class="text-right">
+                            <a class="btn btn-sm" ng-click="cancel()"><i class="ace-icon fa fa-reply"></i>Reset</a>
+                            <button ng-click="searchPaziente(paziente);"
+                                    ng-disabled="product_form.$invalid || enableUpdate"
+                                    class="btn btn-sm btn-primary"
+                                    type="submit">
+                                <i class="ace-icon fa fa-search"></i>{{buttonText}}
+                            </button>
+                            <button ng-show="isNoDataFound()" ng-click="registraPaziente(paziente);"
+                                    ng-disabled="product_form.$invalid || enableUpdate"
+                                    class="btn btn-sm btn-danger"
+                                    type="submit">
+                                <i class=" fa fa-plus"></i>{{addPazienteBtnLabel}}
+                            </button>
+                        </div>
+                    </form-element>
+                </div>
+            </form>
+
+            <div ng-hide="isSearchable()">
+                <table class="table table-striped" ng-hide="isNoDataFound()">
+                    <tr ng-hide="pazienti.length>-1">
+                        <td style="vertical-align:middle;">
+                            <i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th ng-repeat="c in columns">{{c.text}}</th>
+                    </tr>
+
+                    <tr ng-repeat="c in pazienti | orderBy:'id'" id="{{c.id}}" ng-animate=" 'animate'">
+                        <td>{{c.id}}</td>
+                        <td>{{c.nome}}</td>
+                        <td>{{c.cognome}}</td>
+                        <td>{{c.sesso}}</td>
+                        <td>{{c.data_nascita}}</td>
+                        <!--<td>{{c.stock}}</td><td>{{c.packing}}</td><td>{{c.description}}</td>
+                        <td>
+                            <button class="btn" ng-class="{Active:'btn-success', Inactive:''}[c.status]" ng-click="changeProductStatus(c);">{{c.status}}</button>
+                        </td>-->
+                        <td style="width:140px">
+                            <div class="btn-group">
+                                <a ng-href="{{'#/paziente/'+c.id+'/visita'}}" class="btn btn-default fa fa-plus" title="Nuova visita"></a>
+                                <a ng-href="{{'#/paziente/'+c.id}}" class="btn btn-default fa fa-edit" title="Apri scheda paziente"></a>
+                                <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="deletePaziente(c);" title="Elimina scheda paziente"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div ng-hide="isSearchable() || isNoDataFound()" style="vertical-align:middle;">
+
+                <form name="product_form" class="form-horizontal" role="form" ng-submit>
+                    Altrimenti registra un nuovo paziente:
+                    <form-element label="">
+                        <div class="">
+                            <button ng-click="registraPaziente(paziente);"
+                                    ng-disabled="product_form.$invalid || enableUpdate"
+                                    class="btn btn-sm btn-danger"
+                                    type="submit">
+                                <i class=" fa fa-plus"></i>{{addPazienteBtnLabel}}
+                            </button>
+                        </div>
+                    </form-element>
+                </form>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+              
