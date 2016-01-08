@@ -3,15 +3,12 @@
 <body ng-cloak="">
 <title>Pazienti Manager Web Application</title>
 <meta name="Description" content="Pazienti Manager Web Application created with AngularJS and PHP">
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <div class="blog-masthead">
     <div class="container" ng-controller="panelCtrl as panel">
-
-
-
         <nav class="blog-nav">
             <a class="blog-nav-item" ng-click="panel.selectTab(1)" ng-class="{ active:panel.isSelected(1) }" href="#/anagrafica">Anagrafica</a>
             <a class="blog-nav-item" ng-click="panel.selectTab(2)" ng-class="{ active:panel.isSelected(2) }" href="#/calendario">Calendario</a>
@@ -23,9 +20,12 @@
     </div>
 </div>
 
+
 <div class="container">
+    <div ncy-breadcrumb></div>
     <div class="page-content">
-        <div ng-view="" id="ng-view"></div>
+        <!--<div ng-view="" id="ng-view"></div>-->
+        <div ui-view></div>
     </div>
 </div>
 
@@ -35,11 +35,17 @@
 <!--<script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>-->
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<!-- UI-Router -->
+<script src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+<script src="js/angular-breadcrumb.min.js"></script>
+
+
 <!--<script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
 
 <!--<script src="js/angular-route.min.js"></script>-->
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>-->
 
 <!--<script src="js/angular-animate.min.js"></script>-->
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
@@ -47,10 +53,14 @@
 
 <!-- AngularJS custom codes -->
 <script src="app/app.js"></script>
+<script src="app/services.js"></script>
 <script src="app/data.js"></script>
 <script src="app/directives.js"></script>
+
+
 <script src="app/anagraficaCtrl.js"></script>
 <script src="app/pazienteCtrl.js"></script>
+
 
 
 <!-- Some Bootstrap Helper Libraries -->
@@ -59,8 +69,6 @@
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 
-<!--<script src="js/bootstrap.min.js"></script>-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 
 <script src="js/underscore.min.js"></script>

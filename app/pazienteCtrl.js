@@ -1,6 +1,6 @@
-app.controller('pazienteNewEditCtrl', function ($scope, $filter, $routeParams, $location, Data) {
+app.controller('pazienteNewEditCtrl', function ($scope, $filter, $stateParams, $location, Data) {
 
-    var pazienteId = $routeParams.pazienteId;
+    var pazienteId = $stateParams.pazienteId;
 
     if(pazienteId){
         $scope.panelHeadingText = 'Modifica Paziente';
@@ -23,10 +23,10 @@ app.controller('pazienteNewEditCtrl', function ($scope, $filter, $routeParams, $
 
         $scope.paziente = {};
         $scope.paziente = {
-            nome : $routeParams.nome,
-            cognome : $routeParams.cognome,
-            sesso : $routeParams.sesso,
-            data_nascita : $routeParams.data_nascita
+            nome : $stateParams.nome,
+            cognome : $stateParams.cognome,
+            sesso : $stateParams.sesso,
+            data_nascita : $stateParams.data_nascita
         };
     }
 
@@ -37,28 +37,27 @@ app.controller('pazienteNewEditCtrl', function ($scope, $filter, $routeParams, $
 
     $scope.registerPaziente = function (paziente) {
         console.log('done!');
-        //paziente.uid = $scope.uid;
+        var tmpDataNascita = $filter('date')($scope.paziente.data_nascita, 'yyyy-MM-dd');
+        console.log(tmpDataNascita);
+        $scope.paziente.data_nascita = tmpDataNascita;
         if(paziente.id > 0){
+            console.log('doing PUT');
             Data.put('pazienti/'+paziente.id, paziente).then(function (result) {
                 if(result.status != 'error'){
                     console.log(result);
-                    var pazienteId = result.id
-                    $location.path('/paziente/' + pazienteId);
+                    var params = {pazienteId: result.id};
+                    $state.go('PazienteDashboard', params);
                 }else{
                     console.log(result);
                 }
             });
         }else{
             console.log('doing POST!');
-            var tmpDataNascita = $filter('date')($scope.paziente.data_nascita, 'yyyy-MM-dd');
-            console.log(tmpDataNascita);
-            $scope.paziente.data_nascita = tmpDataNascita;
-
             Data.post('pazienti', paziente).then(function (result) {
                 if(result.status != 'error'){
                     console.log(result);
-                    var pazienteId = result.id
-                    $location.path('/paziente/' + pazienteId);
+                    var params = {pazienteId: result.id};
+                    $state.go('PazienteDashboard', params);
                 }else{
                     console.log(result);
                 }
@@ -71,9 +70,9 @@ app.controller('pazienteNewEditCtrl', function ($scope, $filter, $routeParams, $
     };
 });
 
-app.controller('pazienteDashboardCtrl', function ($scope, $filter, $routeParams, $location, Data) {
+app.controller('pazienteDashboardCtrl', function ($scope, $filter, $stateParams, $location, Data) {
     $scope.panelHeadingText = 'Dashboard';
-    $scope.pazienteId = $routeParams.pazienteId;
+    $scope.pazienteId = $stateParams.pazienteId;
     Data.get('pazienti/' + $scope.pazienteId).then(function (result) {
         if(result.status != 'error'){
             console.log(result);
@@ -89,8 +88,8 @@ app.controller('pazienteDashboardCtrl', function ($scope, $filter, $routeParams,
 });
 
 
-app.controller('pazienteInfoPanelCtrl', function($scope, $routeParams, Data) {
-    $scope.pazienteId = $routeParams.pazienteId;
+app.controller('pazienteInfoPanelCtrl', function($scope, $stateParams, Data) {
+    $scope.pazienteId = $stateParams.pazienteId;
     Data.get('pazienti/' + $scope.pazienteId).then(function (result) {
         if(result.status != 'error'){
             console.log(result);

@@ -1,5 +1,6 @@
-var app = angular.module('ambulatorioApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate']);
+var app = angular.module('ambulatorioApp', ['ui.router', 'ncy-angular-breadcrumb', 'ui.bootstrap', 'ngAnimate']);
 
+/*
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -53,8 +54,82 @@ app.config(['$routeProvider',
     })
     .otherwise({
       redirectTo: '/'
-    });;
+    });
 }]);
+*/
+
+app.config(function($stateProvider, $urlRouterProvider){
+
+  // For any unmatched url, send to /route1
+  $urlRouterProvider.otherwise("/");
+
+  $stateProvider
+    .state('home', {
+      url: "/",
+      templateUrl: "partials/anagrafica.html",
+      controller: "anagraficaCtrl",
+      reloadOnSearch: false,
+      ncyBreadcrumb: {
+        label: 'Home page'
+      }
+    })
+    .state('anagrafica', {
+      url: "/anagrafica",
+      templateUrl: "partials/anagrafica/anagraficaSearch.html",
+      controller: "anagraficaSearchCtrl",
+      reloadOnSearch: false,
+      ncyBreadcrumb: {
+        label: 'Anagrafica Pazienti'
+      }
+    })
+    .state('anagrafica.results', {
+      url: "/results",
+      templateUrl: "partials/anagrafica/anagraficaResults.html",
+      controller: "anagraficaResultCtrl",
+      reloadOnSearch: false,
+      ncyBreadcrumb: {
+        label: 'Risultati Ricerca'
+      }
+    })
+
+    .state('anagrafica.addPaziente', {
+      url: "/paziente",
+      templateUrl: "partials/paziente/pazienteNewEdit.html",
+      controller: "pazienteNewEditCtrl",
+      reloadOnSearch: false,
+      ncyBreadcrumb: {
+        label: 'Nuovo Paziente'
+      }
+    })
+    .state('paziente.list', {
+      url: "/paziente/all",
+      templateUrl: "partials/paziente/pazienteList.html",
+      controller: "pazienteListCtrl",
+      reloadOnSearch: false,
+      ncyBreadcrumb: {
+        label: 'Lista Pazienti'
+      }
+    })
+    .state('paziente', {
+      url: "/paziente/:pazienteId",
+      templateUrl: "partials/paziente/pazienteDashboard.html",
+      controller: "pazienteDashboardCtrl",
+      reloadOnSearch: false,
+      ncyBreadcrumb: {
+        label: 'Paziente'
+      }
+    })
+    .state('paziente.editPaziente', {
+      url: "/edit",
+      templateUrl: "partials/paziente/pazienteNewEdit.html",
+      controller: "pazienteNewEditCtrl",
+      reloadOnSearch: false,
+      ncyBreadcrumb: {
+        label: 'Modifica Dati Paziente'
+      }
+    })
+    ;
+});
 
 
 app.controller('panelCtrl', function () {
