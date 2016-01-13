@@ -52,15 +52,6 @@ app.directive('animateOnChange', function($animate) {
 });
 
 
-app.directive('pazienteInfoPanel', function() {
-  return {
-        restrict: 'E',
-        scope: {
-          paziente: '='
-        },
-        controller: 'pazienteInfoPanelCtrl',
-        controllerAs: 'ctrl',
-        //bindToController: true,
-        templateUrl: 'partials/paziente/components/pazienteInfoPanel.html'
-  }
-});
+
+
+

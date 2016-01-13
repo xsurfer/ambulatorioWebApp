@@ -1,0 +1,73 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{panelHeadingText}}
+    </div>
+    <div class="panel-body">
+        <form name="product_form" class="form-horizontal" role="form" ng-submit novalidate>
+
+            <form-element label="Data" mod="visita" >
+                <input type="date" class="" name="data_visita" placeholder="" ng-model="visita.data_visita" focus />
+            </form-element>
+            <!-- Antropometria
+            <div class="row">
+                <div class="col-md-4">
+                    <form-element label="Peso (Kg)" mod="visita">
+                        <input type="text" class="form-control" name="peso" placeholder="" ng-model="visita.ril_antropometrico.peso" ng-blur="evaluateBMI()" />
+                    </form-element>
+                </div>
+                <div class="col-md-4">
+                    <form-element label="Altezza (m)" mod="visita">
+                        <input type="text" class="form-control" name="altezza" placeholder="" ng-model="visita.ril_antropometrico.altezza" ng-blur="evaluateBMI()" />
+                    </form-element>
+                </div>
+                <div class="col-md-4">
+                    <form-element label="BMI" mod="visita">
+                        <input type="text" class="form-control" name="bmi" placeholder="" ng-model="visita.ril_antropometrico.bmi" />
+                    </form-element>
+                </div>
+            </div>
+            -->
+
+            <form-element label="Anamnesi" mod="visita">
+                <textarea rows="5" cols="50" maxlength="1000" class="" name="anamnesi" placeholder="ANAMNESI" ng-model="visita.anamnesi"  ></textarea>
+            </form-element>
+
+            <form-element label="Esame obiettivo" mod="visita">
+                <textarea rows="5" cols="50"  maxlength="1000" class="" name="esame_obiettivo" placeholder="ESAME OBIETTIVO" ng-model="visita.esame_obiettivo"  ></textarea>
+            </form-element>
+
+            <form-element label="Esame strumentale" mod="visita">
+                <textarea rows="5" cols="50" maxlength="1000" class="" name="esame_strumentale" placeholder="ESAME STRUENTALE" ng-model="visita.esame_strumentale"  ></textarea>
+            </form-element>
+
+            <form-element label="Diagnosi" mod="visita">
+                <textarea rows="5" cols="50" maxlength="1000" class="" name="diagnosi" placeholder="DIAGNOSI" ng-model="visita.diagnosi"  ></textarea>
+            </form-element>
+
+            <form-element label="Terapia" mod="visita">
+                <textarea rows="5" cols="50" maxlength="1000" class="" name="terapia" placeholder="TERAPIA" ng-model="visita.terapia"  ></textarea>
+            </form-element>
+
+            <div class="space"></div>
+            <div class="space-4"></div>
+
+            <!--<form-element label="" >-->
+            <div class="text-right">
+                <a class="btn btn-sm" ng-click="cancel()">
+                    <i class="ace-icon fa fa-reply"></i>
+                    Reset
+                </a>
+                <button ng-click="registerPaziente(paziente)"
+                        ng-disabled="product_form.$invalid || enableUpdate"
+                        class="btn btn-sm btn-primary"
+                        type="submit">
+                    <i class="ace-icon fa fa-check"></i>
+                    {{registerBtn}}
+                </button>
+            </div>
+            <!--</form-element> -->
+        </form>
+    </div>
+</div>
+

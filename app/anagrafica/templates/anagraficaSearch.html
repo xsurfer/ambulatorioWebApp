@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-sm-12" ui-view>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    {{anagrafica.panelHeadingText}}
+                </div>
+                <div class="panel-body">
+                    <form name="anagrafica_form" class="form-horizontal" role="form" ng-submit>
+                        <form-element label="NOME" model="anagrafica.paziente">
+                            <input type="text" class="form-control" name="nome" placeholder="NOME" ng-model="anagrafica.paziente.nome" ng-disabled="anagrafica.paziente.id" focus/>
+                        </form-element>
+
+                        <form-element label="COGNOME" model="anagrafica.paziente">
+                            <input type="text" class="form-control" name="cognome" placeholder="COGNOME" ng-model="anagrafica.paziente.cognome" ng-disabled="anagrafica.paziente.id" />
+                        </form-element>
+
+                        <form-element label="SESSO" model="anagrafica.paziente">
+                            <input type="text" class="form-control" name="sesso" placeholder="SESSO" ng-model="anagrafica.paziente.sesso" ng-disabled="anagrafica.paziente.id" />
+                        </form-element>
+
+                        <form-element label="DATA_NASCITA" model="anagrafica.paziente">
+                            <input type="date" class="form-control" name="data_nascita" placeholder="DATA_NASCITA" ng-model="anagrafica.paziente.data_nascita" ng-disabled="anagrafica.paziente.id" />
+                        </form-element>
+
+
+                        <div class="space"></div>
+                        <div class="space-4"></div>
+
+                        <form-element label="">
+                            <div class="text-right">
+                                <a class="btn btn-sm" ng-click="anagrafica.cancel()"><i class="ace-icon fa fa-reply"></i>Reset</a>
+                                <button ng-click="anagrafica.setPazienteToSearch(anagrafica.paziente);"
+                                        ng-disabled="product_form.$invalid || enableUpdate"
+                                        class="btn btn-sm btn-primary"
+                                        type="submit">
+                                    <i class="ace-icon fa fa-search"></i>{{anagrafica.buttonText}}
+                                </button>
+                            </div>
+                        </form-element>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4 col-sm-12 ">
+            <div class="panel panel-primary">
+                <div class="panel-heading">{{'Ultime Ricerche'}}
+                </div>
+                <div class="panel-body">
+                    body
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 ">
+            <div class="panel panel-primary">
+                <div class="panel-heading">{{'Altro tab'}}
+                </div>
+                <div class="panel-body">
+                    body
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 ">
+            <div class="panel panel-primary">
+                <div class="panel-heading">{{'Altro tab'}}
+                </div>
+                <div class="panel-body">
+                    body
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

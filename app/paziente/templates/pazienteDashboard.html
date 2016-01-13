@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-md-push-8">
+            <div class="row">
+                <div class="col-sm-6 col-md-12" >
+                    <paziente-info-panel></paziente-info-panel>
+                </div>
+                <div class="col-sm-6 col-md-12" >
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Esenzioni
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>Codice</th>
+                                        <th>Esenzione</th>
+                                        <th>Scadenza</th>
+                                    </tr>
+
+                                    <tr ng-repeat="c in esenzione | orderBy:'id'" id="{{c.id}}" ng-animate=" 'animate'">
+                                        <td>{{c.id}}</td>
+                                        <td>{{c.nome}}</td>
+                                        <td>{{c.cognome}}</td>
+                                        <td>{{c.sesso}}</td>
+                                        <td>{{c.data_nascita}}</td>
+                                        <!--<td>{{c.stock}}</td><td>{{c.packing}}</td><td>{{c.description}}</td>
+                                        <td>
+                                            <button class="btn" ng-class="{Active:'btn-success', Inactive:''}[c.status]" ng-click="changeProductStatus(c);">{{c.status}}</button>
+                                        </td>-->
+                                        <td style="width:140px">
+                                            <div class="btn-group">
+                                                <a ng-href="{{'#/paziente/'+c.id+'/visita'}}" class="btn btn-default fa fa-plus" title="Nuova visita"></a>
+                                                <a ng-href="{{'#/paziente/'+c.id}}" class="btn btn-default fa fa-edit" title="Apri scheda paziente"></a>
+                                                <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="deletePaziente(c);" title="Elimina scheda paziente"></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-12 col-md-8 col-md-pull-4" ui-view>
+            <visita-list-panel></visita-list-panel>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
