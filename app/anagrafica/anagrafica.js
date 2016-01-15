@@ -17,14 +17,7 @@ anagrafica.config(function($stateProvider){
       url: "/search?nome&cognome&sesso",
       templateUrl: "app/anagrafica/templates/anagraficaResults.html",
       controller: "anagraficaResultController",
-      controllerAs: 'anagrafica',
-      resolve: {
-            pazienti: ['$stateParams', 'PazienteService',
-                function($stateParams, PazienteService) {
-                    console.log($stateParams);
-                    return PazienteService.searchPazienti($stateParams);
-            }],
-        },
+      controllerAs: 'resultCtrl',
       reloadOnSearch: false,
       ncyBreadcrumb: {
         label: 'Risultati Ricerca'

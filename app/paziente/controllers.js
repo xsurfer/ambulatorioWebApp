@@ -1,102 +1,68 @@
-app.controller('pazienteNewEditController', [ '$scope', '$filter', '$state', '$stateParams', 'Data', 'MyService',
-                                function ($scope, $filter, $state, $stateParams, Data, MyService) {
+app.controller('pazienteNewEditController', [ '$filter', '$state', '$stateParams', 'PazienteService',
+                                function ($filter, $state, $stateParams, PazienteService) {
+    var vm = this;
+    vm.pazienteId = $stateParams.pazienteId;
 
-    var pazienteId = $stateParams.pazienteId;
+    if(vm.pazienteId){
+        vm.panelHeadingText = 'Modifica Paziente';
+        vm.registerBtn = 'Salva';
 
-    if(pazienteId){
-        $scope.panelHeadingText = 'Modifica Paziente';
-        $scope.registerBtn = 'Salva';
-
-        Data.get('pazienti/' + pazienteId).then(function (result) {
-            if(result.status != 'error'){
-                console.log(result);
-                $scope.paziente = result;
-                /*$scope.panelHeadingText = 'Risultati ricerca'
-                $scope.search = false;
-                $location.search(paziente);*/
-            }else{
-                //console.log(result);
+        PazienteService.get(vm.pazienteId).then(function(data){
+            vm.paziente = data;
+            }, function(){
+                vm.paziente = {};
+                console.log("An error occurred while retrieving paziente");
             }
-        });
+        );
     } else {
-        $scope.panelHeadingText = 'Registra Paziente';
-        $scope.registerBtn = 'Aggiungi';
-
-        $scope.paziente = {};
-        $scope.paziente = MyService.get();
-        /*$scope.paziente = {
-            nome : $stateParams.nome,
-            cognome : $stateParams.cognome,
-            sesso : $stateParams.sesso,
-            data_nascita : $stateParams.data_nascita
-        };*/
+        vm.panelHeadingText = 'Registra Paziente';
+        vm.registerBtn = 'Aggiungi';
+        vm.paziente = $stateParams;
     }
 
-    $scope.registerPaziente = function (paziente) {
-        console.log('done!');
+    vm.registerPaziente = function (paziente) {
         var tmpDataNascita = $filter('date')($scope.paziente.data_nascita, 'yyyy-MM-dd');
-        console.log(tmpDataNascita);
-        $scope.paziente.data_nascita = tmpDataNascita;
-        if(paziente.id > 0){
-            console.log('doing PUT');
-            Data.put('pazienti/'+paziente.id, paziente).then(function (result) {
-                if(result.status != 'error'){
-                    console.log(result);
-                    var params = {pazienteId: result.id};
-                    $state.go('paziente', params);
-                }else{
-                    console.log(result);
-                }
-            });
+        vm.paziente.data_nascita = tmpDataNascita;
+        if(vm.paziente.id > 0){
+            // DO UPDATE
         }else{
-            console.log('doing POST!');
-            Data.post('pazienti', paziente).then(function (result) {
-                if(result.status != 'error'){
-                    console.log(result);
-                    var params = {pazienteId: result.id};
-                    $state.go('paziente', params);
-                }else{
-                    console.log(result);
-                }
-            });
+            // DO INSERT
         }
     };
 
-    $scope.cancel = function () {
-        $scope.paziente = {};
+    vm.cancel = function () {
+        vm.paziente = {};
     };
 }]);
 
-app.controller('pazienteDashboardController', function ($scope, $filter, $stateParams, $location, Data) {
-    $scope.panelHeadingText = 'Dashboard';
-    $scope.pazienteId = $stateParams.pazienteId;
-    Data.get('pazienti/' + $scope.pazienteId).then(function (result) {
-        if(result.status != 'error'){
-            console.log(result);
-            $scope.paziente = result;
-            /*$scope.panelHeadingText = 'Risultati ricerca'
-            $scope.search = false;
-            $location.search(paziente);*/
-        }else{
-            //console.log(result);
-        }
+
+app.controller('pazienteDashboardController', ['$stateParams', 'PazienteService', function ($stateParams, PazienteService) {
+    var vm = this;
+
+}]);
+
+
+app.controller('pazientePanelController', [ '$stateParams', 'PazienteService', function($stateParams, PazienteService) {
+    var vm = this;
+
+    vm.pazienteId = $stateParams.pazienteId;
+    vm.paziente = {};
+
+    PazienteService.get(vm.pazienteId).then(function(data){
+        vm.paziente = data;
+    }, function(){
+        vm.paziente = {};
+        console.log("An error occurred while retrieving paziente");
     });
 
-});
+}]);
 
 
-app.controller('pazienteInfoPanelController', function($scope, $stateParams, Data) {
-    $scope.pazienteId = $stateParams.pazienteId;
-    Data.get('pazienti/' + $scope.pazienteId).then(function (result) {
-        if(result.status != 'error'){
-            console.log(result);
-            $scope.paziente = result;
-            /*$scope.panelHeadingText = 'Risultati ricerca'
-            $scope.search = false;
-            $location.search(paziente);*/
-        }else{
-            //console.log(result);
-        }
-    });
+app.controller('esenzioniPanelController', [ '$stateParams', 'PazienteService', function($stateParams, PazienteService) {
+    var vm = this;
 
-});
+    vm.pazienteId = $stateParams.pazienteId;
+    vm.esenzioni = [];
+
+
+}]);

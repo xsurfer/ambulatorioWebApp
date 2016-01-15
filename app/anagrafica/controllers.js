@@ -1,26 +1,18 @@
-anagrafica.controller( 'AnagraficaSearchController', [ 'MyService', '$stateParams', '$state',
-                                function (MyService, $stateParams, $state) {
+anagrafica.controller( 'AnagraficaSearchController', [ '$stateParams', '$state',
+                                function ($stateParams, $state) {
   var vm = this;
   vm.panelHeadingText = 'Criteri di ricerca';
   vm.buttonText = 'Cerca';
   vm.addPazienteBtnLabel = 'Registra';
   vm.paziente = {};
 
-  /*setPazienteToSearch = function(curPaziente) {
-        MyService.set(curPaziente);
-        $state.go('anagrafica.search');
-    };
-    */
-
-  vm.setPazienteToSearch = function(paziente) {
+  vm.search = function(paziente) {
     if (!paziente){
-        console.log('uff');
+        console.log('Nessun criterio di ricerca impostato');
         return $state.go('anagrafica');
     }
-    console.log(paziente);
     $state.go('anagrafica.search', paziente);
   };
-
 
   vm.cancel = function () {
     vm.paziente = {};
@@ -29,50 +21,60 @@ anagrafica.controller( 'AnagraficaSearchController', [ 'MyService', '$stateParam
 }]);
 
 
-anagrafica.controller('anagraficaResultController', [ 'PazienteService', 'MyService', '$stateParams', '$state', 'pazienti',
-                    function (PazienteService, MyService, $stateParams, $state, pazienti) {
-  var vm = this;
+anagrafica.controller('anagraficaResultController', [ 'PazienteService', 'MyService', '$stateParams', '$state',
+                    function (PazienteService, MyService, $stateParams, $state) {
+    var vm = this;
+    vm.panelHeadingText = 'Risultati ricerca';
+    vm.addPazienteBtnLabel = 'Registra';
+    vm.buttonText = "bella";
+    vm.search = true;
+    vm.isNewPaziente=false;
+    vm.pazienteRicercato = $stateParams;
+    console.log('ricercato');
+    console.log(vm.pazienteRicercato);
+    vm.pazienti = [];
 
-  vm.panelHeadingText = 'Risultati ricerca';
-  vm.addPazienteBtnLabel = 'Registra';
-  vm.buttonText = "bella";
-  vm.search = true;
-  vm.isNewPaziente=false;
-  vm.pazienti = pazienti.data;
+    PazienteService.search($stateParams).then(function(data){
+        vm.pazienti = data;
+    }, function(){
+        console.log("An error occurred while retrieving paziente");
+        vm.pazienti = [];
+    });
 
-  isSearchable= function (){
-    var isSearchable = search
-    //console.log("isSearchable: " + isSearchable)
-    return isSearchable;
-  }
+    isSearchable= function (){
+        var isSearchable = search
+        return isSearchable;
+    }
 
-  isNoDataFound= function (){
-    var isNoDataFound = !isSearchable() && (pazienti.length == 0);
-    //console.log("isNoDataFound: " + isNoDataFound)
-    return isNoDataFound;
-  }
+    isNoDataFound= function (){
+        var isNoDataFound = !isSearchable() && (pazienti.length == 0);
+        //console.log("isNoDataFound: " + isNoDataFound)
+        return isNoDataFound;
+    }
 
-  openPaziente = function (paziente) {
-    //$location.path('/paziente/' + paziente.id).search('').replace();
-    var params = {pazienteId: result.id};
-    $state.go('PazienteDashboard', params);
-  }
+    openPaziente = function (paziente) {
+        var params = {pazienteId: result.id};
+        $state.go('PazienteDashboard', params);
+    }
 
-  registraPaziente = function (paziente) {
-    $state.go('anagrafica.addPaziente');
-  };
+    vm.registraPaziente = function (paziente) {
+        console.log("REGISTRA");
+        console.log(vm.pazienteRicercato);
+        $state.go('anagrafica.addPaziente', vm.pazienteRicercato);
+    };
 
-  columns = [
-                    {text:"ID",predicate:"id",sortable:true,dataType:"number"},
-                    {text:"Nome",predicate:"nome",sortable:true},
-                    {text:"Cognome",predicate:"cognome",sortable:true},
-                    {text:"Sesso",predicate:"sesso",sortable:true},
-                    {text:"Data di nascita",predicate:"data_nascita",sortable:true},
-//                    {text:"Stock",predicate:"stock",sortable:true},
-//                    {text:"Packing",predicate:"packing",reverse:true,sortable:true,dataType:"number"},
-//                    {text:"Description",predicate:"description",sortable:true},
-//                    {text:"Status",predicate:"status",sortable:true},
-//                    {text:"Action",predicate:"",sortable:false}
-                ];
+    columns = [
+        {text:"ID",predicate:"id",sortable:true,dataType:"number"},
+        {text:"Nome",predicate:"nome",sortable:true},
+        {text:"Cognome",predicate:"cognome",sortable:true},
+        {text:"Sesso",predicate:"sesso",sortable:true},
+        {text:"Data di nascita",predicate:"data_nascita",sortable:true},
+    ];
+
+}]);
+
+
+app.controller('ultimeRicerchePanelController', [ '$stateParams', function($stateParams) {
+    var vm = this;
 
 }]);

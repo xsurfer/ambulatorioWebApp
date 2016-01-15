@@ -1,7 +1,7 @@
 
 <div class="table-responsive">
     <div class="panel panel-primary">
-        <div class="panel-heading">{{anagrafica.panelHeadingText}}
+        <div class="panel-heading">{{resultCtrl.panelHeadingText}}
             <!--<div class="sw-search" >
                 <div class="nav-search" id="nav-search">
                     Filter: <span class="input-icon">
@@ -22,20 +22,20 @@
             </div>
 
             <form ng-show="isSearchable() || isNoDataFound()" name="product_form" class="form-horizontal" role="form" ng-submit>
-                <form-element label="NOME" model="anagrafica.paziente">
-                    <input type="text" class="form-control" name="nome" placeholder="NOME" ng-model="anagrafica.paziente.nome" ng-disabled="anagrafica.paziente.id" focus/>
+                <form-element label="NOME" model="resultCtrl.paziente">
+                    <input type="text" class="form-control" name="nome" placeholder="NOME" ng-model="resultCtrl.paziente.nome" ng-disabled="resultCtrl.paziente.id" focus/>
                 </form-element>
 
-                <form-element label="COGNOME" model="anagrafica.paziente">
-                    <input type="text" class="form-control" name="cognome" placeholder="COGNOME" ng-model="anagrafica.paziente.cognome" ng-disabled="anagrafica.paziente.id" />
+                <form-element label="COGNOME" model="resultCtrl.paziente">
+                    <input type="text" class="form-control" name="cognome" placeholder="COGNOME" ng-model="resultCtrl.paziente.cognome" ng-disabled="resultCtrl.paziente.id" />
                 </form-element>
 
-                <form-element label="SESSO" mod="anagrafica.paziente">
-                    <input type="text" class="form-control" name="sesso" placeholder="SESSO" ng-model="anagrafica.paziente.sesso" ng-disabled="anagrafica.paziente.id" />
+                <form-element label="SESSO" mod="resultCtrl.paziente">
+                    <input type="text" class="form-control" name="sesso" placeholder="SESSO" ng-model="resultCtrl.paziente.sesso" ng-disabled="resultCtrl.paziente.id" />
                 </form-element>
 
-                <form-element label="DATA_NASCITA" mod="anagrafica.paziente">
-                    <input type="date" class="form-control" name="data_nascita" placeholder="DATA_NASCITA" ng-model="anagrafica.paziente.data_nascita" ng-disabled="anagrafica.paziente.id" />
+                <form-element label="DATA_NASCITA" mod="resultCtrl.paziente">
+                    <input type="date" class="form-control" name="data_nascita" placeholder="DATA_NASCITA" ng-model="resultCtrl.paziente.data_nascita" ng-disabled="resultCtrl.paziente.id" />
                 </form-element>
 
 
@@ -45,17 +45,17 @@
                     <form-element label="">
                         <div class="text-right">
                             <a class="btn btn-sm" ng-click="cancel()"><i class="ace-icon fa fa-reply"></i>Reset</a>
-                            <button ng-click="anagrafica.searchPaziente(anagrafica.paziente);"
+                            <button ng-click="resultCtrl.searchPaziente(resultCtrl.paziente);"
                                     ng-disabled="product_form.$invalid || enableUpdate"
                                     class="btn btn-sm btn-primary"
                                     type="submit">
-                                <i class="ace-icon fa fa-search"></i>{{anagrafica.buttonText}}
+                                <i class="ace-icon fa fa-search"></i>{{resultCtrl.buttonText}}
                             </button>
-                            <button ng-show="isNoDataFound()" ng-click="anagrafica.registraPaziente(anagrafica.paziente);"
+                            <button ng-show="isNoDataFound()" ng-click="resultCtrl.registraPaziente();"
                                     ng-disabled="product_form.$invalid || enableUpdate"
                                     class="btn btn-sm btn-danger"
                                     type="submit">
-                                <i class=" fa fa-plus"></i>{{anagrafica.addPazienteBtnLabel}}
+                                <i class=" fa fa-plus"></i>{{resultCtrl.addPazienteBtnLabel}}
                             </button>
                         </div>
                     </form-element>
@@ -64,7 +64,7 @@
 
             <div ng-hide="isSearchable()">
                 <table class="table table-striped" ng-hide="isNoDataFound()">
-                    <tr ng-hide="anagrafica.pazienti.length>-1">
+                    <tr ng-hide="resultCtrl.pazienti.length>-1">
                         <td style="vertical-align:middle;">
                             <i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading
                         </td>
@@ -74,7 +74,7 @@
                         <th ng-repeat="c in columns">{{c.text}}</th>
                     </tr>
 
-                    <tr ng-repeat="c in anagrafica.pazienti | orderBy:'id'" id="{{c.id}}" ng-animate=" 'animate'">
+                    <tr ng-repeat="c in resultCtrl.pazienti | orderBy:'id'" id="{{c.id}}" ng-animate=" 'animate'">
                         <td>{{c.id}}</td>
                         <td>{{c.nome}}</td>
                         <td>{{c.cognome}}</td>
@@ -99,11 +99,11 @@
                 <p>Altrimenti, registra un nuovo paziente:</p>
                 <div class="text-center">
                     <form name="product_form" class="form-horizontal" role="form" ng-submit>
-                        <button ng-click="anagrafica.registraPaziente(anagrafica.paziente);"
+                        <button ng-click="resultCtrl.registraPaziente(resultCtrl.paziente);"
                                 ng-disabled="product_form.$invalid || enableUpdate"
                                 class="btn btn-sm btn-danger"
                                 type="submit">
-                            <i class=" fa fa-plus"></i>{{anagrafica.addPazienteBtnLabel}}
+                            <i class=" fa fa-plus"></i>{{resultCtrl.addPazienteBtnLabel}}
                         </button>
                     </form>
                 </div>

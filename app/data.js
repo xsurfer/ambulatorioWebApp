@@ -7,10 +7,10 @@ app.factory("Data", ['$http', '$location',
 
         obj.get = function (q, object) {
             var config = {}
-            console.log(object);
+            //console.log(object);
             if (object!=null){
                 config = { params: object };
-                console.log(config);
+                //console.log(config);
             }
 
             return $http.get(serviceBase + q + '/', config).then(function (results) {

@@ -4,52 +4,52 @@
         </div>
         <div class="panel-body">
             <form name="product_form" class="form-horizontal" role="form" ng-submit novalidate>
-                <form-element label="Nome" mod="paziente">
-                    <input type="text" class="form-control" name="nome" placeholder="NOME" ng-model="paziente.nome"  focus/>
+                <form-element label="Nome" mod="newEditCtrl.paziente">
+                    <input type="text" class="form-control" name="nome" placeholder="NOME" ng-model="newEditCtrl.paziente.nome"  focus/>
                 </form-element>
 
-                <form-element label="Cognome" mod="paziente">
-                    <input type="text" class="form-control" name="cognome" placeholder="COGNOME" ng-model="paziente.cognome"  />
+                <form-element label="Cognome" model="newEditCtrl.paziente">
+                    <input type="text" class="form-control" name="cognome" placeholder="COGNOME" ng-model="newEditCtrl.paziente.cognome"  />
                 </form-element>
 
-                <form-element label="Sesso" mod="paziente">
-                    <input type="text" class="form-control" name="sesso" placeholder="SESSO" ng-model="paziente.sesso"  />
+                <form-element label="Sesso" model="newEditCtrl.paziente">
+                    <input type="text" class="form-control" name="sesso" placeholder="SESSO" ng-model="newEditCtrl.paziente.sesso"  />
                 </form-element>
 
-                <form-element label="Data di Nascita" mod="paziente">
-                    <input type="date" class="form-control" name="data_nascita" placeholder="DATA NASCITA" ng-model="paziente.data_nascita"  />
+                <form-element label="Data di Nascita" model="newEditCtrl.paziente">
+                    <input type="date" class="form-control" name="data_nascita" placeholder="DATA NASCITA" ng-model="newEditCtrl.paziente.data_nascita"  />
                 </form-element>
 
-                <form-element label="Codice Fiscale" mod="paziente">
-                    <input type="text" class="form-control" name="codice_fiscale" placeholder="CODICE FISCALE" ng-model="paziente.codice_fiscale"  />
+                <form-element label="Codice Fiscale" model="newEditCtrl.paziente">
+                    <input type="text" class="form-control" name="codice_fiscale" placeholder="CODICE FISCALE" ng-model="newEditCtrl.paziente.codice_fiscale"  />
                 </form-element>
 
-                <form-element label="Nazionalità" mod="paziente">
-                    <input type="text" class="form-control" name="nazionalita" placeholder="NAZIONALITA" ng-model="paziente.nazionalita"  />
+                <form-element label="Nazionalità" model="newEditCtrl.paziente">
+                    <input type="text" class="form-control" name="nazionalita" placeholder="NAZIONALITA" ng-model="newEditCtrl.paziente.nazionalita"  />
                 </form-element>
 
-                <form-element label="Indirizzo" mod="paziente">
-                    <input type="text" class="form-control" name="indirizzo_residenza" placeholder="INDIRIZZO" ng-model="paziente.indirizzo_residenza"  />
+                <form-element label="Indirizzo" model="newEditCtrl.paziente">
+                    <input type="text" class="form-control" name="indirizzo_residenza" placeholder="INDIRIZZO" ng-model="newEditCtrl.paziente.indirizzo_residenza"  />
                 </form-element>
 
-                <form-element label="Comune" mod="paziente">
-                    <input type="text" class="form-control" name="comune_residenza" placeholder="COMUNE" ng-model="paziente.comune_residenza"  />
+                <form-element label="Comune" model="newEditCtrl.paziente">
+                    <input type="text" class="form-control" name="comune_residenza" placeholder="COMUNE" ng-model="newEditCtrl.paziente.comune_residenza"  />
                 </form-element>
 
-                <form-element label="Telefono" mod="paziente">
-                    <input type="text" class="form-control" name="telefono" placeholder="TELEFONO" ng-model="paziente.telefono"  />
+                <form-element label="Telefono" model="newEditCtrl.paziente">
+                    <input type="text" class="form-control" name="telefono" placeholder="TELEFONO" ng-model="newEditCtrl.paziente.telefono"  />
                 </form-element>
 
-                <form-element label="Cellulare" mod="paziente">
-                    <input type="text" class="form-control" name="cellulare" placeholder="CELLULARE" ng-model="paziente.cellulare"  />
+                <form-element label="Cellulare" model="newEditCtrl.paziente">
+                    <input type="text" class="form-control" name="cellulare" placeholder="CELLULARE" ng-model="newEditCtrl.paziente.cellulare"  />
                 </form-element>
 
-                <form-element label="E-mail" mod="paziente">
-                    <input type="email" class="form-control" name="email" placeholder="EMAIL" ng-model="paziente.email"  />
+                <form-element label="E-mail" model="newEditCtrl.paziente">
+                    <input type="email" class="form-control" name="email" placeholder="EMAIL" ng-model="newEditCtrl.paziente.email"  />
                 </form-element>
 
-                <form-element label="Profilo" mod="paziente">
-                    <textarea rows="4" cols="50" maxlength="1000" class="form-control" name="profilo" placeholder="PROFILO" ng-model="paziente.profilo"  ></textarea>
+                <form-element label="Profilo" model="newEditCtrl.paziente">
+                    <textarea rows="4" cols="50" maxlength="1000" class="form-control" name="profilo" placeholder="PROFILO" ng-model="newEditCtrl.paziente.profilo"  ></textarea>
                 </form-element>
 
                 <div class="space"></div>
@@ -58,7 +58,7 @@
                     <form-element label="">
                         <div class="text-right">
                             <a class="btn btn-sm" ng-click="cancel()"><i class="ace-icon fa fa-reply"></i>Reset</a>
-                            <button ng-click="registerPaziente(paziente)"
+                            <button ng-click="registerPaziente(newEditCtrl.paziente)"
                                     ng-disabled="product_form.$invalid || enableUpdate"
                                     class="btn btn-sm btn-primary"
                                     type="submit">

@@ -4,9 +4,10 @@ var paziente = angular.module('paziente', []);
 paziente.config(function($stateProvider){
 
     $stateProvider.state('anagrafica.addPaziente', {
-      url: "/paziente",
+      url: "/paziente?nome&cognome&sesso",
       templateUrl: "app/paziente/templates/pazienteNewEdit.html",
       controller: "pazienteNewEditController",
+      controllerAs: 'newEditCtrl',
       reloadOnSearch: false,
       ncyBreadcrumb: {
         label: 'Nuovo Paziente'
@@ -34,6 +35,7 @@ paziente.config(function($stateProvider){
       url: "/edit",
       templateUrl: "app/paziente/templates/pazienteNewEdit.html",
       controller: "pazienteNewEditController",
+      controllerAs: 'newEditCtrl',
       reloadOnSearch: false,
       ncyBreadcrumb: {
         label: 'Modifica Dati Paziente'

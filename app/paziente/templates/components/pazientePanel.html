@@ -1,0 +1,14 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Dati anagrafici</div>
+    <div class="panel-body">
+        <p><b>{{pazientePanelCtrl.paziente.getFullName()}}</b><br/>
+            Età: XXX <b>{{pazientePanelCtrl.paziente.telefono ? ", C.F. " + pazientePanelCtrl.paziente.codice_fiscale : ""}}</b><br/>
+            {{pazientePanelCtrl.paziente.sesso === "M" ? "Nato" : "Nata"}} a XXX il {{pazientePanelCtrl.paziente.data_nascita}}<br/>
+            Residente in {{pazientePanelCtrl.paziente.indirizzo_residenza}}, {{pazientePanelCtrl.paziente.comune_residenza}}<br/>
+            {{pazientePanelCtrl.paziente.telefono ? "Tel. " + pazientePanelCtrl.paziente.telefono + ', ' : ""}}
+            {{pazientePanelCtrl.paziente.cellulare ? "Cell. " + pazientePanelCtrl.paziente.cellulare + '' : ""}}<br/>
+            {{pazientePanelCtrl.paziente.email ? "E-mail " + pazientePanelCtrl.paziente.email : ""}}
+        </p>
+        <a  ui-sref="paziente.editPaziente" class="btn btn-default fa fa-edit" title="Apri scheda paziente"></a>
+    </div>
+</div>

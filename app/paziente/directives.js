@@ -1,12 +1,25 @@
-app.directive('pazienteInfoPanel', function() {
+paziente.directive('pazientePanel', function() {
   return {
         restrict: 'E',
         scope: {
           paziente: '='
         },
-        controller: 'pazienteInfoPanelController',
-        controllerAs: 'ctrl',
+        controller: 'pazientePanelController',
+        controllerAs: 'pazientePanelCtrl',
         //bindToController: true,
-        templateUrl: 'app/paziente/templates/components/pazienteInfoPanel.html'
+        templateUrl: 'app/paziente/templates/components/pazientePanel.html'
+  }
+});
+
+paziente.directive('esenzioniPanel', function() {
+  return {
+        restrict: 'E',
+        scope: {
+          paziente: '='
+        },
+        controller: 'esenzioniPanelController',
+        controllerAs: 'esenzioniPanelController',
+        //bindToController: true,
+        templateUrl: 'app/paziente/templates/components/esenzioniPanel.html'
   }
 });

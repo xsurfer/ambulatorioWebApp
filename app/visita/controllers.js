@@ -20,7 +20,7 @@ app.controller('visitaNewEditController', [ '$scope', '$filter', '$stateParams',
 
         Data.get('pazienti/' + pazienteId).then(function (result) {
             if(result.status != 'error'){
-                console.log(result);
+                //console.log(result);
                 $scope.paziente = result;
                 /*$scope.panelHeadingText = 'Risultati ricerca'
                 $scope.search = false;
@@ -44,26 +44,26 @@ app.controller('visitaNewEditController', [ '$scope', '$filter', '$stateParams',
     }
 
     $scope.registerPaziente = function (paziente) {
-        console.log('done!');
+        //console.log('done!');
         var tmpDataNascita = $filter('date')($scope.paziente.data_nascita, 'yyyy-MM-dd');
-        console.log(tmpDataNascita);
+        //console.log(tmpDataNascita);
         $scope.paziente.data_nascita = tmpDataNascita;
         if(paziente.id > 0){
-            console.log('doing PUT');
+            //console.log('doing PUT');
             Data.put('pazienti/'+paziente.id, paziente).then(function (result) {
                 if(result.status != 'error'){
-                    console.log(result);
+                    //console.log(result);
                     var params = {pazienteId: result.id};
                     $state.go('PazienteDashboard', params);
                 }else{
-                    console.log(result);
+                    //console.log(result);
                 }
             });
         }else{
-            console.log('doing POST!');
+            //console.log('doing POST!');
             Data.post('pazienti', paziente).then(function (result) {
                 if(result.status != 'error'){
-                    console.log(result);
+                    //console.log(result);
                     var params = {pazienteId: result.id};
                     $state.go('PazienteDashboard', params);
                 }else{
@@ -74,16 +74,16 @@ app.controller('visitaNewEditController', [ '$scope', '$filter', '$stateParams',
     };
 
     $scope.evaluateBMI = function(){
-        console.log('evaluatng');
-        console.log($scope.visita.ril_antropometrico.peso);
-        console.log($scope.visita.ril_antropometrico.altezza);
+        //console.log('evaluatng');
+        //console.log($scope.visita.ril_antropometrico.peso);
+        //console.log($scope.visita.ril_antropometrico.altezza);
 
         if($scope.visita.ril_antropometrico.peso && $scope.visita.ril_antropometrico.peso > 0){
-            console.log('check1');
+            //console.log('check1');
             if($scope.visita.ril_antropometrico.altezza && $scope.visita.ril_antropometrico.altezza > 0){
-                console.log('check2');
+                //console.log('check2');
                 $scope.visita.ril_antropometrico.bmi = $scope.visita.ril_antropometrico.peso / ($scope.visita.ril_antropometrico.altezza * $scope.visita.ril_antropometrico.altezza);
-                console.log($scope.visita.ril_antropometrico.bmi);
+                //console.log($scope.visita.ril_antropometrico.bmi);
             }
         }
     }
@@ -98,21 +98,21 @@ app.controller('visitaListPanelController', [ '$http', '$scope', '$filter', '$st
     pazienteId = $stateParams.pazienteId;
     paziente = {};
 
-    console.log('PazienteId: '+ pazienteId);
+    //console.log('PazienteId: '+ pazienteId);
 
     Data.get('pazienti/' + pazienteId).then(function (result) {
             if(result.status != 'error'){
                 paziente = result;
-                console.log('eeccolo');
-                console.log(paziente);
+                //console.log('eeccolo');
+                //console.log(paziente);
                 getVisite(paziente);
-                console.log('trovate');
-                console.log($scope.visite);
+                //console.log('trovate');
+                //console.log($scope.visite);
                 /*$scope.panelHeadingText = 'Risultati ricerca'
                 $scope.search = false;
                 $location.search(paziente);*/
             }else{
-                console.log(result);
+                //console.log(result);
             }
     });
 
@@ -124,7 +124,7 @@ app.controller('visitaListPanelController', [ '$http', '$scope', '$filter', '$st
                     $scope.visite = response.data;
                 }
             }, function errorCallback(response) {
-                console.log(response);
+                //console.log(response);
             });
     }
 

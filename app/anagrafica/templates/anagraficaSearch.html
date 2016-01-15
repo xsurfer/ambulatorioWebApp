@@ -30,7 +30,7 @@
                         <form-element label="">
                             <div class="text-right">
                                 <a class="btn btn-sm" ng-click="anagrafica.cancel()"><i class="ace-icon fa fa-reply"></i>Reset</a>
-                                <button ng-click="anagrafica.setPazienteToSearch(anagrafica.paziente);"
+                                <button ng-click="anagrafica.search(anagrafica.paziente);"
                                         ng-disabled="product_form.$invalid || enableUpdate"
                                         class="btn btn-sm btn-primary"
                                         type="submit">
@@ -45,34 +45,7 @@
 
         </div>
         <div class="col-md-4 col-sm-12 ">
-            <div class="panel panel-primary">
-                <div class="panel-heading">{{'Ultime Ricerche'}}
-                </div>
-                <div class="panel-body">
-                    body
-
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-12 ">
-            <div class="panel panel-primary">
-                <div class="panel-heading">{{'Altro tab'}}
-                </div>
-                <div class="panel-body">
-                    body
-
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-12 ">
-            <div class="panel panel-primary">
-                <div class="panel-heading">{{'Altro tab'}}
-                </div>
-                <div class="panel-body">
-                    body
-
-                </div>
-            </div>
+            <ultime-ricerche-panel></ultime-ricerche-panel>
         </div>
     </div>
 </div>
